@@ -1,0 +1,107 @@
+<!-- New upload page code -->
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Upload Page</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: bisque;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            border: 2px solid #333;
+            color: #333;
+            margin: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .preview {
+            display: none;
+            max-width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Upload Image</h1>
+
+    <form id="uploadForm">
+        <input type="file" accept="image/*" id="imageInput" required />
+        <input type="text" placeholder="Your Name" id="nameInput" required />
+        <textarea placeholder="Leave a Comment" id="commentInput" required></textarea>
+        <button type="submit" class="button">Upload</button>
+    </form>
+
+    <div class="preview" id="preview">
+        <article class="thumb">
+            <a href="#" class="image" id="previewImage"><img src="" alt="Preview" /></a>
+            <h2 id="previewName"></h2>
+            <p id="previewComment"></p>
+        </article>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.poptrox.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var imageInput = document.getElementById('imageInput');
+            var nameInput = document.getElementById('nameInput');
+            var commentInput = document.getElementById('commentInput');
+            var previewImage = document.getElementById('previewImage');
+            var previewName = document.getElementById('previewName');
+            var previewComment = document.getElementById('previewComment');
+            var preview = document.getElementById('preview');
+
+            // Display preview
+            previewImage.src = URL.createObjectURL(imageInput.files[0]);
+            previewName.innerText = nameInput.value;
+            previewComment.innerText = commentInput.value;
+            preview.style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>
